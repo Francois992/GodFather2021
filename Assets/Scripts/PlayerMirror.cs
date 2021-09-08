@@ -30,7 +30,7 @@ public class PlayerMirror : MonoBehaviour
     {
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector2 lookDir = mousePos - GetComponent<Rigidbody2D>().position;
+        Vector2 lookDir = (mousePos - GetComponent<Rigidbody2D>().position).normalized;
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         GetComponent<Rigidbody2D>().rotation = angle;
 
@@ -67,7 +67,7 @@ public class PlayerMirror : MonoBehaviour
         {
             if (mirrorMoveValue == (int)Mirror.mirrors[i].correspondingKey)
             {
-                transform.position = Mirror.mirrors[i].transform.position;
+                transform.position = new Vector3(Mirror.mirrors[i].transform.position.x, Mirror.mirrors[i].transform.position.y, 0);
             }
         } 
     }

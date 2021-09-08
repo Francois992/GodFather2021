@@ -6,8 +6,8 @@ public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField] private float speed = 5;
-    [SerializeField] private float lifeTime = 6;
+    [SerializeField] protected float speed = 5;
+    [SerializeField] protected float lifeTime = 6;
 
     private Quaternion initRot;
 
@@ -26,6 +26,14 @@ public class Projectile : MonoBehaviour
         elapsedTime += Time.deltaTime;
 
         if(elapsedTime>= lifeTime)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<Player_0>() && !IsReflected)
         {
             Destroy(gameObject);
         }

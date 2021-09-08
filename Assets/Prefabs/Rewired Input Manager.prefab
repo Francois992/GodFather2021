@@ -270,6 +270,114 @@ MonoBehaviour:
       _behaviorId: 0
       _userAssignable: 1
       _categoryId: 1
+    - _id: 4
+      _name: Aim Horizontal
+      _type: 0
+      _descriptiveName: Aim Horizontal
+      _positiveDescriptiveName: Right
+      _negativeDescriptiveName: Left
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
+    - _id: 5
+      _name: Aim Vertical
+      _type: 0
+      _descriptiveName: Aim Vertical
+      _positiveDescriptiveName: Up
+      _negativeDescriptiveName: Down
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 1
+    - _id: 6
+      _name: MoveHorizontal
+      _type: 0
+      _descriptiveName: MoveHorizontal
+      _positiveDescriptiveName: Rigth
+      _negativeDescriptiveName: Left
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 7
+      _name: SwitchMirror1
+      _type: 1
+      _descriptiveName: Action1
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 8
+      _name: SwitchMirror2
+      _type: 1
+      _descriptiveName: Action2
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 9
+      _name: SwitchMirror3
+      _type: 1
+      _descriptiveName: Action3
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 10
+      _name: SwitchMirror4
+      _type: 1
+      _descriptiveName: Action4
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 11
+      _name: SwitchMirror5
+      _type: 1
+      _descriptiveName: Action5
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 15
+      _name: SwitchMirror8
+      _type: 1
+      _descriptiveName: Action5
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 14
+      _name: SwitchMirror7
+      _type: 1
+      _descriptiveName: Action5
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 13
+      _name: SwitchMirror6
+      _type: 1
+      _descriptiveName: Action5
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
+    - _id: 16
+      _name: Shoot
+      _type: 1
+      _descriptiveName: Shoot
+      _positiveDescriptiveName: 
+      _negativeDescriptiveName: 
+      _behaviorId: 0
+      _userAssignable: 1
+      _categoryId: 2
     actionCategories:
     - _name: Default
       _descriptiveName: Default
@@ -291,9 +399,9 @@ MonoBehaviour:
       - categoryId: 0
         actionIds: 
       - categoryId: 1
-        actionIds: 00000000010000000200000003000000
+        actionIds: 000000000100000002000000030000000400000005000000
       - categoryId: 2
-        actionIds: 
+        actionIds: 060000000700000008000000090000000a0000000b0000000d0000000e0000000f00000010000000
     inputBehaviors:
     - _id: 0
       _name: Default
@@ -405,7 +513,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 4
         _elementType: 0
         _elementIdentifierId: 2
         _axisRange: 0
@@ -416,7 +524,7 @@ MonoBehaviour:
         _modifierKey2: 0
         _modifierKey3: 0
       - _actionCategoryId: 0
-        _actionId: -1
+        _actionId: 5
         _elementType: 0
         _elementIdentifierId: 3
         _axisRange: 0
@@ -717,12 +825,34 @@ MonoBehaviour:
         _modifierKey1: 0
         _modifierKey2: 0
         _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 4
+        _elementType: 0
+        _elementIdentifierId: 0
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
+      - _actionCategoryId: 0
+        _actionId: 5
+        _elementType: 0
+        _elementIdentifierId: 1
+        _axisRange: 0
+        _invert: 0
+        _axisContribution: 0
+        _keyboardKeyCode: 0
+        _modifierKey1: 0
+        _modifierKey2: 0
+        _modifierKey3: 0
     customControllerMaps: []
     customControllers: []
     controllerMapLayoutManagerRuleSets: []
     controllerMapEnablerRuleSets: []
     playerIdCounter: 3
-    actionIdCounter: 4
+    actionIdCounter: 17
     actionCategoryIdCounter: 3
     inputBehaviorIdCounter: 1
     mapCategoryIdCounter: 3

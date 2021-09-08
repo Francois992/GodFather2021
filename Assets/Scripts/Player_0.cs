@@ -14,10 +14,14 @@ public class Player_0 : MonoBehaviour
     // The Force of a jump 
     public float jumpForce = 3.0f;
 
+    //var For Inputs
     private Player player; // The Rewired Player*
     private Vector3 moveVector;
+    private Vector3 aimVector;
     private bool jump;
+    private bool attack;
 
+    //Rigidbody
     private Rigidbody2D rb;
 
     //var for Jump
@@ -29,12 +33,23 @@ public class Player_0 : MonoBehaviour
     [SerializeField] private float jumpTime;
     [SerializeField] private bool isJumping;
 
+    //var for Attack
+    [SerializeField] private GameObject attackPos;
+    [SerializeField] private float attackRadius;
+    [SerializeField] private float attackReach;
+    [SerializeField] private float attackCooldown;
+    [SerializeField] private LayerMask enemyLayers;
+
     private void Start()
     {
         // Get the Rewired Player object for this player and keep it for the duration of the character's lifetime
         player = ReInput.players.GetPlayer(playerId);
 
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
+
+        //set the pos for the arrow/attackpos
+        attackPos.transform.GetChild(0).localPosition = new Vector3(attackReach, 0);
+        Debug.Log(attackReach);
     }
 
     private void Update()
@@ -44,6 +59,7 @@ public class Player_0 : MonoBehaviour
 
         GetInput();
         ProcessInput();
+        AimMnagement();
     }
 
     private void GetInput()
@@ -52,8 +68,13 @@ public class Player_0 : MonoBehaviour
         // whether the input is coming from a joystick, the keyboard, mouse, or a custom controller.
 
         moveVector.x = player.GetAxis("Mouvement Horizontal"); // get input by name or action id
-        moveVector.y = player.GetAxis("Mouvement Vertical"); 
+        moveVector.y = player.GetAxis("Mouvement Vertical");
+
+        aimVector.x = player.GetAxis("Aim Horizontal");
+        aimVector.y = player.GetAxis("Aim Vertical");
+
         jump = player.GetButton("Jump");
+        attack = player.GetButtonDown("Attack");
     }
 
     private void ProcessInput()
@@ -89,5 +110,42 @@ public class Player_0 : MonoBehaviour
         {
             isJumping = false;
         }
+
+        //Process Attack
+        if (attack)
+        {
+            Debug.Log("attack");
+            Collider2D[] hitEnnemies = Physics2D.OverlapCircleAll(attackPos.transform.GetChild(0).position, attackRadius, enemyLayers);
+
+            foreach (Collider2D enemy in hitEnnemies)
+            {
+                Debug.Log("We hit " + enemy.name);
+            }
+        }
+
+    }
+
+    private void AimMnagement()
+    {
+        
+        float aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+        attackPos.GetComponent<Rigidbody2D>().rotation = aimAngle;
+        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPos == null)
+        {
+            return;
+        }
+
+        //Attack Radius
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPos.transform.GetChild(0).position, attackRadius);
+
+        //Attack Reach
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, attackReach);
     }
 }

@@ -5,7 +5,7 @@ public class GameOver : MonoBehaviour
 {
     public void GoToMainMenu()
     {
-      SceneManager.LoadScene("Maxence");
+      SceneManager.LoadScene("MainMenu");
     }
 
     public void Retry()

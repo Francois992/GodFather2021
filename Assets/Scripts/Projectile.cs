@@ -25,19 +25,17 @@ public class Projectile : MonoBehaviour
         float elapsedTime = 0;
         elapsedTime += Time.deltaTime;
 
-        if (elapsedTime >= lifeTime)
+        if(elapsedTime>= lifeTime)
         {
             Destroy(gameObject);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Player_0>() && !IsReflected)
         {
             Destroy(gameObject);
         }
-
     }
-
 }

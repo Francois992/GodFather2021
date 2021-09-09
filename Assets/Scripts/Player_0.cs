@@ -115,20 +115,18 @@ public class Player_0 : MonoBehaviour
         //Process Attack
         if (attack)
         {
-            //Debug.Log("attack");
+            Debug.Log("attack");
             Collider2D[] hitEnnemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRadius, enemyLayers);
 
             foreach (Collider2D enemy in hitEnnemies)
             {
-                //Debug.Log("We hit " + enemy.name);
+                Debug.Log("We hit " + enemy.name);
                 if (enemy.gameObject.GetComponent<Projectile>())
                 {
-                    if (!enemy.gameObject.GetComponent<Projectile>().IsReflected)
-                    {
-                        enemy.gameObject.transform.eulerAngles = new Vector3(0, 0, aimAngle);
-                        enemy.gameObject.GetComponent<Projectile>().IsReflected = true;
-                    }
+                    enemy.gameObject.GetComponent<Projectile>().IsReflected = true;
                 }
+                enemy.gameObject.transform.eulerAngles = new Vector3(0, 0, aimAngle);
+                
             }
         }
 

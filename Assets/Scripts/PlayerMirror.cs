@@ -15,19 +15,14 @@ public class PlayerMirror : MonoBehaviour
     public int mirrorMoveValue = 0;
 
     public Camera cam;
-    private Vector2 AimPoint;
 
     [SerializeField] private Projectile projectile = null;
-    [SerializeField] private GameObject anchor = null;
-    [SerializeField] private GameObject arrow = null;
 
     // Start is called before the first frame update
     void Start()
     {
         initRot = transform.rotation;
         myPlayer = ReInput.players.GetPlayer(myPlayerId);
-
-        transform.position = new Vector3(InitialMirror.transform.position.x, InitialMirror.transform.position.y, 0);
     }
 
     // Update is called once per frame
@@ -35,13 +30,9 @@ public class PlayerMirror : MonoBehaviour
     {
         Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
 
-        AimPoint = new Vector2(myPlayer.GetAxis("AimHorizontal"), myPlayer.GetAxis("AimVertical"));
-        float angle = Mathf.Atan2(AimPoint.y, AimPoint.x) * Mathf.Rad2Deg;
-        anchor.GetComponent<Rigidbody2D>().rotation = angle;
-
-        //Vector2 lookDir = (mousePos - GetComponent<Rigidbody2D>().position).normalized;
-        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
-        //GetComponent<Rigidbody2D>().rotation = angle;
+        Vector2 lookDir = (mousePos - GetComponent<Rigidbody2D>().position).normalized;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+        GetComponent<Rigidbody2D>().rotation = angle;
 
         if (myPlayer.GetButtonDown("Shoot"))
         {
@@ -83,6 +74,6 @@ public class PlayerMirror : MonoBehaviour
 
     private void Shoot()
     {
-        Projectile projectileInstance = Instantiate(projectile, arrow.transform.position, arrow.transform.rotation);
+        Projectile projectileInstance = Instantiate(projectile, transform.position, transform.rotation);
     }
 }

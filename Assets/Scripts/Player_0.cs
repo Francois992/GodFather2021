@@ -48,7 +48,7 @@ public class Player_0 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         //set the pos for the arrow/attackpos
-        attackPos.transform.GetChild(0).localPosition = new Vector3(attackReach, 0);
+        attackPos.transform.localPosition = new Vector3(attackReach, 0);
     }
 
     private void Update()
@@ -66,7 +66,7 @@ public class Player_0 : MonoBehaviour
         // whether the input is coming from a joystick, the keyboard, mouse, or a custom controller.
 
         moveVector.x = player.GetAxis("Mouvement Horizontal"); // get input by name or action id
-        moveVector.y = player.GetAxis("Mouvement Vertical");
+        //moveVector.y = player.GetAxis("Mouvement Vertical");
 
         aimVector.x = player.GetAxis("Aim Horizontal");
         aimVector.y = player.GetAxis("Aim Vertical");
@@ -113,7 +113,7 @@ public class Player_0 : MonoBehaviour
         if (attack)
         {
             Debug.Log("attack");
-            Collider2D[] hitEnnemies = Physics2D.OverlapCircleAll(attackPos.transform.GetChild(0).position, attackRadius, enemyLayers);
+            Collider2D[] hitEnnemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRadius, enemyLayers);
 
             foreach (Collider2D enemy in hitEnnemies)
             {
@@ -124,8 +124,10 @@ public class Player_0 : MonoBehaviour
         //Process Aim
         if (aimVector.x > 0.01f || aimVector.y > 0.01f || aimVector.x < -0.01f || aimVector.y < -0.01f)
         {
+            
             float aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-            attackPos.GetComponent<Rigidbody2D>().rotation = aimAngle;
+            attackPos.transform.localPosition = new Vector3( attackReach * Mathf.Cos(aimAngle * Mathf.Deg2Rad), attackReach * Mathf.Sin(aimAngle * Mathf.Deg2Rad));
+            attackPos.transform.eulerAngles = new Vector3(0, 0, aimAngle);
         }
 
     }
@@ -139,7 +141,7 @@ public class Player_0 : MonoBehaviour
 
         //Attack Radius
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.transform.GetChild(0).position, attackRadius);
+        Gizmos.DrawWireSphere(attackPos.transform.position, attackRadius);
 
         //Attack Reach
         Gizmos.color = Color.green;

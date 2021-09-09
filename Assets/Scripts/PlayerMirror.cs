@@ -23,6 +23,8 @@ public class PlayerMirror : MonoBehaviour
     {
         initRot = transform.rotation;
         myPlayer = ReInput.players.GetPlayer(myPlayerId);
+
+        transform.position = new Vector3(InitialMirror.transform.position.x, InitialMirror.transform.position.y, 0);
     }
 
     // Update is called once per frame

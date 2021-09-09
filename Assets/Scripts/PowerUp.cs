@@ -14,7 +14,7 @@ public class PowerUp : MonoBehaviour
     {
         if(transform.position == player.transform.position)
         {
-            Destroy(gameObject, 0.2f);
+            //Destroy(gameObject, 0.2f);
         }
     }
 }

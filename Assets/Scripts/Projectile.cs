@@ -57,6 +57,15 @@ public class Projectile : MonoBehaviour
             Score.instance.scoreP2 -= 1;
             audioSource.PlayOneShot(mirrorBreak);
         }
+
+        if (collision.gameObject.GetComponent<Projectile>() && !IsReflected)
+        {
+            if (collision.gameObject.GetComponent<Projectile>().IsReflected)
+            {
+                Destroy(gameObject);
+                Destroy(collision.gameObject);
+            }
+        }
     }
 
 }

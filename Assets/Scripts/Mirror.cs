@@ -8,7 +8,12 @@ public class Mirror : MonoBehaviour
     public bool isBroken = false;
 
     [SerializeField] private float repairTime = 10;
+
+    public bool hasSpreadPU = false;
+    public bool hasboomerangdPU = false;
     private float elapsedTime = 0;
+
+    public PowerUp myPowerUp;
 
     public enum CorrespondingKey
     {

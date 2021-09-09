@@ -36,6 +36,15 @@ public class PlayerMirror : MonoBehaviour
     private float elapsedTime;
     private float elapsedTime2;
 
+    private bool isMoving = false;
+    private bool hasMoving = false;
+
+    private Mirror currentMirror = null;
+
+    private float alphaFade;
+    private float timerFade;
+    public float fadeSpeed = 2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +52,7 @@ public class PlayerMirror : MonoBehaviour
         myPlayer = ReInput.players.GetPlayer(myPlayerId);
 
         transform.position = new Vector3(InitialMirror.transform.position.x, InitialMirror.transform.position.y, 0);
+        currentMirror = InitialMirror;
     }
 
     // Update is called once per frame
@@ -58,7 +68,7 @@ public class PlayerMirror : MonoBehaviour
         //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
         //GetComponent<Rigidbody2D>().rotation = angle;
 
-        if (myPlayer.GetButtonDown("Shoot") && !hasShot)
+        if (myPlayer.GetButtonDown("Shoot") && !hasShot && !isMoving && !hasMoving)
         {
             if (isSpread) SpreadShot();
             else if (isBoomerang) BoomerangShot();
@@ -87,45 +97,100 @@ public class PlayerMirror : MonoBehaviour
             }
         }
 
-        if (myPlayer.GetButtonDown("SwitchMirror1"))
+        if(!isMoving && !hasMoving)
         {
-            mirrorMoveValue = 0;
-            MoveToMirror();
+            if (myPlayer.GetButtonDown("SwitchMirror1"))
+            {
+                mirrorMoveValue = 0;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror2"))
+            {
+                mirrorMoveValue = 1;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror3"))
+            {
+                mirrorMoveValue = 2;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror4"))
+            {
+                mirrorMoveValue = 3;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror5"))
+            {
+                mirrorMoveValue = 4;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror6"))
+            {
+                mirrorMoveValue = 5;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror7"))
+            {
+                mirrorMoveValue = 6;
+                MoveToMirror();
+            }
+            else if (myPlayer.GetButtonDown("SwitchMirror8"))
+            {
+                mirrorMoveValue = 7;
+                MoveToMirror();
+            }
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror2"))
+
+        if (currentMirror.hasboomerangdPU)
         {
-            mirrorMoveValue = 1;
-            MoveToMirror();
+            isBoomerang = true;
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror3"))
+        else
         {
-            mirrorMoveValue = 2;
-            MoveToMirror();
+            isBoomerang = false;
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror4"))
+
+        if (currentMirror.hasSpreadPU)
         {
-            mirrorMoveValue = 3;
-            MoveToMirror();
+            isSpread = true;
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror5"))
+        else
         {
-            mirrorMoveValue = 4;
-            MoveToMirror();
+            isSpread = false;
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror6"))
+
+        if (isMoving)
         {
-            mirrorMoveValue = 5;
-            MoveToMirror();
+            timerFade += Time.deltaTime;
+            alphaFade = Mathf.Lerp(1, 0, timerFade * fadeSpeed);
+            Color fadeColor = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+            fadeColor.a = alphaFade;
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = fadeColor;
+            if (transform.GetChild(0).GetComponent<SpriteRenderer>().color.a <= 0.02)
+            {
+                hasMoving = true;
+                transform.position = new Vector3(currentMirror.transform.position.x, currentMirror.transform.position.y, 0);
+                fadeColor.a = 0;
+                transform.GetChild(0).GetComponent<SpriteRenderer>().color = fadeColor;
+                isMoving = false;
+                timerFade = 0;
+            }
         }
-        else if (myPlayer.GetButtonDown("SwitchMirror7"))
+        else if (hasMoving)
         {
-            mirrorMoveValue = 6;
-            MoveToMirror();
-        }
-        else if (myPlayer.GetButtonDown("SwitchMirror8"))
-        {
-            mirrorMoveValue = 7;
-            MoveToMirror();
+            timerFade += Time.deltaTime;
+            alphaFade = Mathf.Lerp(0, 1, timerFade * fadeSpeed);
+            Color fadeColor = transform.GetChild(0).GetComponent<SpriteRenderer>().color;
+            fadeColor.a = alphaFade;
+            transform.GetChild(0).GetComponent<SpriteRenderer>().color = fadeColor;
+            if (transform.GetChild(0).GetComponent<SpriteRenderer>().color.a >= 0.95)
+            {
+                hasMoving = false;
+                fadeColor.a = 1;
+                transform.GetChild(0).GetComponent<SpriteRenderer>().color = fadeColor;
+                hasMove = true;
+                timerFade = 0;
+            }
         }
     }
 
@@ -133,10 +198,12 @@ public class PlayerMirror : MonoBehaviour
     {
         for(int i = Mirror.mirrors.Count - 1; i >= 0; i--)
         {
-            if (mirrorMoveValue == (int)Mirror.mirrors[i].correspondingKey && !Mirror.mirrors[i].isBroken && !hasMove)
+            if (mirrorMoveValue == (int)Mirror.mirrors[i].correspondingKey && !Mirror.mirrors[i].isBroken && !hasMove && currentMirror != Mirror.mirrors[i])
             {
-                transform.position = new Vector3(Mirror.mirrors[i].transform.position.x, Mirror.mirrors[i].transform.position.y, 0);
-                hasMove = true;
+                isMoving = true;
+                currentMirror = Mirror.mirrors[i];
+
+                
             }
         } 
     }
@@ -152,7 +219,8 @@ public class PlayerMirror : MonoBehaviour
         {
             float zRot = arrow.transform.rotation.eulerAngles.z - ShotAngleSpread + ShotAngleSpread * i;
             Quaternion rotationShoot = Quaternion.Euler(new Vector3(arrow.transform.rotation.eulerAngles.x, arrow.transform.rotation.eulerAngles.y, zRot));
-
+            currentMirror.hasSpreadPU = false;
+            Destroy(currentMirror.myPowerUp.gameObject);
             Projectile projectileInstance = Instantiate(projectile, arrow.transform.position,rotationShoot);
             isSpread = false;
         }
@@ -161,7 +229,8 @@ public class PlayerMirror : MonoBehaviour
     private void BoomerangShot()
     {
         Boomerang boomerangInstance = Instantiate(boomerang, arrow.transform.position, arrow.transform.rotation);
-
+        Destroy(currentMirror.myPowerUp.gameObject);
+        currentMirror.hasboomerangdPU = false;
         isBoomerang = false;
     }
 }

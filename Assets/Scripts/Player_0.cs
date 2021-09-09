@@ -49,7 +49,6 @@ public class Player_0 : MonoBehaviour
 
         //set the pos for the arrow/attackpos
         attackPos.transform.GetChild(0).localPosition = new Vector3(attackReach, 0);
-        Debug.Log(attackReach);
     }
 
     private void Update()
@@ -59,7 +58,6 @@ public class Player_0 : MonoBehaviour
 
         GetInput();
         ProcessInput();
-        AimMnagement();
     }
 
     private void GetInput()
@@ -123,14 +121,13 @@ public class Player_0 : MonoBehaviour
             }
         }
 
-    }
+        //Process Aim
+        if (aimVector.x > 0.01f || aimVector.y > 0.01f || aimVector.x < -0.01f || aimVector.y < -0.01f)
+        {
+            float aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            attackPos.GetComponent<Rigidbody2D>().rotation = aimAngle;
+        }
 
-    private void AimMnagement()
-    {
-        
-        float aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
-        attackPos.GetComponent<Rigidbody2D>().rotation = aimAngle;
-        
     }
 
     private void OnDrawGizmosSelected()

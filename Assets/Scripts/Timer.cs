@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
     public GameObject gameOverP1;
     public GameObject gameOverP2;
 
-    [SerializeField] private float timeRemaining = 300;
+    [SerializeField] private float timeRemaining = 180;
     [SerializeField] private bool timerIsRunning = true;
 
     void Update()

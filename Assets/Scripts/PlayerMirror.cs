@@ -36,6 +36,9 @@ public class PlayerMirror : MonoBehaviour
     private float elapsedTime;
     private float elapsedTime2;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip mirrorShoot;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,7 +79,7 @@ public class PlayerMirror : MonoBehaviour
                 hasShot = false;
             }
         }
-        
+
         if (hasMove)
         {
             elapsedTime2 += Time.deltaTime;
@@ -138,12 +141,13 @@ public class PlayerMirror : MonoBehaviour
                 transform.position = new Vector3(Mirror.mirrors[i].transform.position.x, Mirror.mirrors[i].transform.position.y, 0);
                 hasMove = true;
             }
-        } 
+        }
     }
 
     private void Shoot()
     {
         Projectile projectileInstance = Instantiate(projectile, arrow.transform.position, arrow.transform.rotation);
+        audioSource.PlayOneShot(mirrorShoot);
     }
 
     private void SpreadShot()

@@ -10,6 +10,9 @@ public class Mirror : MonoBehaviour
     [SerializeField] private float repairTime = 10;
     private float elapsedTime = 0;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip mirrorRepair;
+
     public enum CorrespondingKey
     {
         KeyOne = 0,
@@ -34,13 +37,14 @@ public class Mirror : MonoBehaviour
     void Update()
     {
         if (isBroken)
-        {           
+        {
             elapsedTime += Time.deltaTime;
 
             if(elapsedTime >= repairTime)
             {
                 isBroken = false;
                 elapsedTime = 0;
+                audioSource.PlayOneShot(mirrorRepair);
             }
         }
     }

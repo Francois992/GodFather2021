@@ -14,6 +14,8 @@ public class Player_0 : MonoBehaviour
     // The Force of a jump 
     public float jumpForce = 3.0f;
 
+    [SerializeField] private bool isMouseControl;
+
     //var For Inputs
     private Player player; // The Rewired Player*
     private Vector3 moveVector;
@@ -124,8 +126,16 @@ public class Player_0 : MonoBehaviour
         //Process Aim
         if (aimVector.x > 0.01f || aimVector.y > 0.01f || aimVector.x < -0.01f || aimVector.y < -0.01f)
         {
-            
-            float aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
+            float aimAngle;
+
+            if (isMouseControl)
+            {
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector3 playerToMouse = new Vector3( mousePos.x - transform.position.x, mousePos.y - transform.position.y);
+                aimVector = playerToMouse.normalized;
+            }
+
+            aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
             attackPos.transform.localPosition = new Vector3( attackReach * Mathf.Cos(aimAngle * Mathf.Deg2Rad), attackReach * Mathf.Sin(aimAngle * Mathf.Deg2Rad));
             attackPos.transform.eulerAngles = new Vector3(0, 0, aimAngle);
         }
@@ -146,5 +156,12 @@ public class Player_0 : MonoBehaviour
         //Attack Reach
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, attackReach);
+    }
+    private void OnDrawGizmos()
+    {
+
+
+        Gizmos.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //Gizmos.DrawWireSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 1);
     }
 }

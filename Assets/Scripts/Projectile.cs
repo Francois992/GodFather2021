@@ -15,13 +15,17 @@ public class Projectile : MonoBehaviour
 
     private float elapsedTime = 0;
 
-    [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip playerHurt;
-    [SerializeField] AudioClip mirrorBreak;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip playerHurt;
+    [SerializeField] private AudioClip mirrorBreak;
+
+    [SerializeField] private GameObject player;
 
     void Start()
     {
         initRot = transform.rotation;
+        player = GameObject.FindGameObjectWithTag("Player");
+        audioSource = player.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame

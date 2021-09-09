@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7220706030856833563}
   - component: {fileID: 298809123178236101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7205854805337334095}
   - component: {fileID: -6850109188197119834}
   - component: {fileID: -8530508094070234157}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,6 +130,9 @@ MonoBehaviour:
   speed: 5
   lifeTime: 10
   IsReflected: 0
+  audioSource: {fileID: 0}
+  playerHurt: {fileID: 8300000, guid: d86cf36427c04834c978f64a49b8a739, type: 3}
+  mirrorBreak: {fileID: 8300000, guid: 09fab4fef1073894f8e14540279066ef, type: 3}
 --- !u!61 &-8530508094070234157
 BoxCollider2D:
   m_ObjectHideFlags: 0

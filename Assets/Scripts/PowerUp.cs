@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player2");
     }
 
     void Update()

@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 4129863135533467156}
   m_Layer: 0
   m_Name: PlayerMirror
-  m_TagString: Player
+  m_TagString: Player2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,10 +133,12 @@ MonoBehaviour:
   cam: {fileID: 0}
   projectile: {fileID: 0}
   boomerang: {fileID: -7532298936423483414, guid: 72c6ed82755512d4b9873914dcbacba4, type: 3}
-  anchor: {fileID: 5482321162825253227}
-  arrow: {fileID: 7985765922331894486}
+  anchor: {fileID: 0}
+  arrow: {fileID: 0}
   ShotCountSpread: 3
   ShotAngleSpread: 45
+  Shotcooldown: 1
+  Mirrorcooldown: 1
   isSpread: 0
   isBoomerang: 0
 --- !u!50 &4129863135533467156

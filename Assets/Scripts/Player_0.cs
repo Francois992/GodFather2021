@@ -161,7 +161,7 @@ public class Player_0 : MonoBehaviour
     {
 
 
-        Gizmos.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        //Gizmos.DrawLine(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         //Gizmos.DrawWireSphere(Camera.main.ScreenToWorldPoint(Input.mousePosition), 1);
     }
 }

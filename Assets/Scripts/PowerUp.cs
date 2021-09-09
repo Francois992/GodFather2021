@@ -41,11 +41,11 @@ public class PowerUp : MonoBehaviour
         }
         randomMirrorId = Random.Range(0, transform.childCount);
         Transform randomMirror = transform.GetChild(randomMirrorId);
-        yield return new WaitForSeconds(randomSpawnTime);
         previousSprite = sprite;
-        previousSprite.color = new Color (1, 1, 1, 1);
         sprite = randomMirror.GetComponentInChildren<SpriteRenderer>();
+        yield return new WaitForSeconds(randomSpawnTime);
         sprite.color = new Color (0.2f, 0.2f, 0.2f, 1);
+        previousSprite.color = new Color (1, 1, 1, 1);
         StartCoroutine(ChooseRandomMirror());
     }
 }

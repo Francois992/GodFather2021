@@ -43,5 +43,9 @@ public class Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.GetComponent<Mirror>() && IsReflected)
+        {
+            Destroy(gameObject);
+        }
     }
 }

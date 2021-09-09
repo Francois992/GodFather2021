@@ -41,6 +41,7 @@ public class Player_0 : MonoBehaviour
     [SerializeField] private float attackReach;
     [SerializeField] private float attackCooldown;
     [SerializeField] private LayerMask enemyLayers;
+    private float aimAngle;
 
     private void Start()
     {
@@ -120,13 +121,18 @@ public class Player_0 : MonoBehaviour
             foreach (Collider2D enemy in hitEnnemies)
             {
                 Debug.Log("We hit " + enemy.name);
+                if (enemy.gameObject.GetComponent<Projectile>())
+                {
+                    enemy.gameObject.GetComponent<Projectile>().IsReflected = true;
+                }
+                enemy.gameObject.transform.eulerAngles = new Vector3(0, 0, aimAngle);
+                
             }
         }
 
         //Process Aim
         if (aimVector.x > 0.01f || aimVector.y > 0.01f || aimVector.x < -0.01f || aimVector.y < -0.01f)
         {
-            float aimAngle;
 
             if (isMouseControl)
             {
@@ -151,11 +157,11 @@ public class Player_0 : MonoBehaviour
 
         //Attack Radius
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(attackPos.transform.position, attackRadius);
+        //Gizmos.DrawWireSphere(attackPos.transform.position, attackRadius);
 
         //Attack Reach
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, attackReach);
+        //Gizmos.DrawWireSphere(transform.position, attackReach);
     }
     private void OnDrawGizmos()
     {

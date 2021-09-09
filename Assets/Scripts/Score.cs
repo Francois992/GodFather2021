@@ -4,9 +4,9 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
 
-    public float scoreP1 = 100f;
-    public float scoreP2 = 100f;
-    public float totalScore = 200f;
+    public float scoreP1 = 4f;
+    public float scoreP2 = 4f;
+    public float totalScore = 8f;
 
     public Image scoreBarP1;
     public Image scoreBarP2;
@@ -26,11 +26,11 @@ public class Score : MonoBehaviour
         scoreBarP1.fillAmount = scoreP1/totalScore;
         scoreBarP2.fillAmount = scoreP2/totalScore;
 
-        if(scoreP1 <= 0)
+        if(scoreP1 == 0)
         {
             gameOverP2.SetActive(true);
         }
-        else if(scoreP2 <= 0)
+        else if(scoreP2 == 0)
         {
             gameOverP1.SetActive(true);
         }

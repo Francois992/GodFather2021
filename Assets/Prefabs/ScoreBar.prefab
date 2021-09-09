@@ -50,11 +50,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6919d05728a08ef428eeb85bf68e98c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreP1: 100
-  scoreP2: 100
-  totalScore: 200
+  scoreP1: 4
+  scoreP2: 4
+  totalScore: 8
   scoreBarP1: {fileID: 2059349449200785874}
   scoreBarP2: {fileID: 2059349450028818366}
+  gameOverP1: {fileID: 0}
+  gameOverP2: {fileID: 0}
 --- !u!1 &2059349449200785872
 GameObject:
   m_ObjectHideFlags: 0

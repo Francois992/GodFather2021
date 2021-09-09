@@ -415,6 +415,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2059349448515713494, guid: ce54d3f88ef21d84a98ef0b6fcadc982, type: 3}
+      propertyPath: scoreP1
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059349448515713494, guid: ce54d3f88ef21d84a98ef0b6fcadc982, type: 3}
+      propertyPath: scoreP2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2059349448515713494, guid: ce54d3f88ef21d84a98ef0b6fcadc982, type: 3}
       propertyPath: gameOverP1
       value: 
       objectReference: {fileID: 1628603873}
@@ -422,6 +430,10 @@ PrefabInstance:
       propertyPath: gameOverP2
       value: 
       objectReference: {fileID: 352852213}
+    - target: {fileID: 2059349448515713494, guid: ce54d3f88ef21d84a98ef0b6fcadc982, type: 3}
+      propertyPath: totalScore
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2059349448515713495, guid: ce54d3f88ef21d84a98ef0b6fcadc982, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

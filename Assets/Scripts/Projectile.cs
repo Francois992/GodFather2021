@@ -15,6 +15,10 @@ public class Projectile : MonoBehaviour
 
     private float elapsedTime = 0;
 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip playerHurt;
+    [SerializeField] AudioClip mirrorBreak;
+
     void Start()
     {
         initRot = transform.rotation;
@@ -24,7 +28,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position += transform.right * speed * Time.deltaTime;
-        
+
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime >= lifeTime)
@@ -38,14 +42,16 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.GetComponent<Player_0>() && !IsReflected)
         {
             Destroy(gameObject);
+            Score.instance.scoreP1 -= 1;
+            Score.instance.scoreP2 += 1;
+            audioSource.PlayOneShot(playerHurt);
         }
         if (collision.gameObject.GetComponent<Mirror>() && IsReflected)
         {
             Destroy(gameObject);
-        }
-        if (collision.gameObject.GetComponent<Mirror>() && IsReflected)
-        {
-            Destroy(gameObject);
+            Score.instance.scoreP1 += 1;
+            Score.instance.scoreP2 -= 1;
+            audioSource.PlayOneShot(mirrorBreak);
         }
     }
 

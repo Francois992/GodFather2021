@@ -36,6 +36,9 @@ public class PlayerMirror : MonoBehaviour
     private float elapsedTime;
     private float elapsedTime2;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip mirrorShoot;
+
     private bool isMoving = false;
     private bool hasMoving = false;
 
@@ -86,7 +89,7 @@ public class PlayerMirror : MonoBehaviour
                 hasShot = false;
             }
         }
-        
+
         if (hasMove)
         {
             elapsedTime2 += Time.deltaTime;
@@ -205,12 +208,13 @@ public class PlayerMirror : MonoBehaviour
 
                 
             }
-        } 
+        }
     }
 
     private void Shoot()
     {
         Projectile projectileInstance = Instantiate(projectile, arrow.transform.position, arrow.transform.rotation);
+        audioSource.PlayOneShot(mirrorShoot);
     }
 
     private void SpreadShot()

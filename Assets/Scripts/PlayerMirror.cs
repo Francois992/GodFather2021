@@ -68,13 +68,33 @@ public class PlayerMirror : MonoBehaviour
             mirrorMoveValue = 3;
             MoveToMirror();
         }
+        else if (myPlayer.GetButtonDown("SwitchMirror5"))
+        {
+            mirrorMoveValue = 4;
+            MoveToMirror();
+        }
+        else if (myPlayer.GetButtonDown("SwitchMirror6"))
+        {
+            mirrorMoveValue = 5;
+            MoveToMirror();
+        }
+        else if (myPlayer.GetButtonDown("SwitchMirror7"))
+        {
+            mirrorMoveValue = 6;
+            MoveToMirror();
+        }
+        else if (myPlayer.GetButtonDown("SwitchMirror8"))
+        {
+            mirrorMoveValue = 7;
+            MoveToMirror();
+        }
     }
 
     private void MoveToMirror()
     {
         for(int i = Mirror.mirrors.Count - 1; i >= 0; i--)
         {
-            if (mirrorMoveValue == (int)Mirror.mirrors[i].correspondingKey)
+            if (mirrorMoveValue == (int)Mirror.mirrors[i].correspondingKey && !Mirror.mirrors[i].isBroken)
             {
                 transform.position = new Vector3(Mirror.mirrors[i].transform.position.x, Mirror.mirrors[i].transform.position.y, 0);
             }

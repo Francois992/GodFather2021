@@ -5,13 +5,21 @@ using UnityEngine;
 public class Mirror : MonoBehaviour
 {
     public static List<Mirror> mirrors = new List<Mirror>();
+    public bool isBroken = false;
+
+    [SerializeField] private float repairTime = 10;
+    private float elapsedTime = 0;
 
     public enum CorrespondingKey
     {
         KeyOne = 0,
         KeyTwo = 1,
         KeyThree = 2,
-        KeyFour =3
+        KeyFour = 3,
+        KeyFive = 4,
+        KeySix =3,
+        KeySeven =3,
+        KeyEight =3
     }
 
     public CorrespondingKey correspondingKey;
@@ -25,6 +33,20 @@ public class Mirror : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (isBroken)
+        {           
+            elapsedTime += Time.deltaTime;
+
+            if(elapsedTime >= repairTime)
+            {
+                isBroken = false;
+                elapsedTime = 0;
+            }
+        }
+    }
+
+    public void BreakMirror()
+    {
+        isBroken = true;
     }
 }

@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
 
     [HideInInspector] public bool IsReflected = false;
 
+    private float elapsedTime = 0;
+
     void Start()
     {
         initRot = transform.rotation;
@@ -22,7 +24,7 @@ public class Projectile : MonoBehaviour
     void Update()
     {
         transform.position += transform.right * speed * Time.deltaTime;
-        float elapsedTime = 0;
+        
         elapsedTime += Time.deltaTime;
 
         if(elapsedTime>= lifeTime)
@@ -34,6 +36,10 @@ public class Projectile : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<Player_0>() && !IsReflected)
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.GetComponent<Mirror>() && IsReflected)
         {
             Destroy(gameObject);
         }

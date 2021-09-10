@@ -150,20 +150,27 @@ public class Player_0 : MonoBehaviour
         if (aimVector.x > 0.01f || aimVector.y > 0.01f || aimVector.x < -0.01f || aimVector.y < -0.01f)
         {
 
-            if (isMouseControl)
+            /*if (isMouseControl)
             {
                 Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector3 playerToMouse = new Vector3( mousePos.x - transform.position.x, mousePos.y - transform.position.y);
                 aimVector = playerToMouse.normalized;
-            }
+            }*/
 
             aimAngle = Mathf.Atan2(aimVector.y, aimVector.x) * Mathf.Rad2Deg;
             attackPos.transform.localPosition = new Vector3( attackReach * Mathf.Cos(aimAngle * Mathf.Deg2Rad), attackReach * Mathf.Sin(aimAngle * Mathf.Deg2Rad));
             attackPos.transform.eulerAngles = new Vector3(0, 0, aimAngle);
         }
 
-        if (moveVector.x > 0) transform.localScale = new Vector3 (1, transform.localScale.y, transform.localScale.z);
-        else if (moveVector.x < 0) transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        if (moveVector.x > 0)
+        {
+            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        }
+        else if (moveVector.x < 0)
+        {
+            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            //attackPos.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+        }
 
     }
 

@@ -11,7 +11,7 @@ public class Player_0 : MonoBehaviour
 
     // The movement speed of this character
     public float moveSpeed = 3.0f;
-    // The Force of a jump
+    // The Force of a jump 
     public float jumpForce = 3.0f;
 
     [SerializeField] private bool isMouseControl;
@@ -43,9 +43,7 @@ public class Player_0 : MonoBehaviour
     [SerializeField] private LayerMask enemyLayers;
     private float aimAngle;
 
-    //var for Audio
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip attackSound;
+    [SerializeField]public Animator animator;
 
     private void Start()
     {
@@ -62,6 +60,12 @@ public class Player_0 : MonoBehaviour
     {
         //Check if grounded
         isGrounded = Physics2D.OverlapCircle(feetPos.position, checkGroundRadius, whatIsGround);
+
+        if (isGrounded)
+                animator.SetBool("isJumping", false);
+
+        animator.SetFloat("moveSpeed", Mathf.Abs(rb.velocity.x));
+        animator.SetFloat("Y", rb.velocity.y);
 
         GetInput();
         ProcessInput();
@@ -94,10 +98,11 @@ public class Player_0 : MonoBehaviour
         if (jump && isGrounded)
         {
             isJumping = true;
+            animator.SetBool("isJumping", true);
             jumpTimeCounter = jumpTime;
             rb.velocity = new Vector2(rb.velocity.x, 1 * jumpForce);
         }
-
+        
         if (jump && isJumping)
         {
             if (jumpTimeCounter > 0)
@@ -120,7 +125,6 @@ public class Player_0 : MonoBehaviour
         if (attack)
         {
             //Debug.Log("attack");
-            audioSource.PlayOneShot(attackSound);
             Collider2D[] hitEnnemies = Physics2D.OverlapCircleAll(attackPos.transform.position, attackRadius, enemyLayers);
 
             foreach (Collider2D enemy in hitEnnemies)

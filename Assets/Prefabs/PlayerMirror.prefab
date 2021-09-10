@@ -273,13 +273,14 @@ MonoBehaviour:
   anchor: {fileID: 8909962674671663047}
   arrow: {fileID: 2112164138860665017}
   ShotCountSpread: 3
-  ShotAngleSpread: 45
+  ShotAngleSpread: 30
   Shotcooldown: 1
   Mirrorcooldown: 1
   isSpread: 0
   isBoomerang: 0
   audioSource: {fileID: 0}
   mirrorShoot: {fileID: 8300000, guid: 5cb8cb47a8b4bb04db5929bd4b0ba36b, type: 3}
+  fadeSpeed: 2
 --- !u!50 &4129863135533467156
 Rigidbody2D:
   serializedVersion: 4

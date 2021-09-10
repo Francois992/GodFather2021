@@ -23,6 +23,7 @@ public class Projectile : MonoBehaviour
 
     private CameraShake cam;
 
+    [SerializeField] private List<string> insults = new List<string>();
     void Start()
     {
         initRot = transform.rotation;

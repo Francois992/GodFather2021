@@ -164,12 +164,11 @@ public class Player_0 : MonoBehaviour
 
         if (moveVector.x > 0)
         {
-            transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+            GetComponent<SpriteRenderer>().transform.localScale = new Vector3(1, GetComponent<SpriteRenderer>().transform.localScale.y, GetComponent<SpriteRenderer>().transform.localScale.z);
         }
         else if (moveVector.x < 0)
         {
-            transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
-            //attackPos.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+            GetComponent<SpriteRenderer>().transform.localScale = new Vector3(-1, GetComponent<SpriteRenderer>().transform.localScale.y, GetComponent<SpriteRenderer>().transform.localScale.z);
         }
 
     }

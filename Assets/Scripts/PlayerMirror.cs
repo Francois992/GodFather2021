@@ -200,7 +200,6 @@ public class PlayerMirror : MonoBehaviour
         else if (myPlayer.GetAxis("AimHorizontal") < 0)
         {
             transform.GetChild(0).transform.localScale = new Vector3(-1, transform.GetChild(0).transform.localScale.y, transform.GetChild(0).transform.localScale.z);
-            //anchor.transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
         }
     }
 

@@ -162,6 +162,9 @@ public class Player_0 : MonoBehaviour
             attackPos.transform.eulerAngles = new Vector3(0, 0, aimAngle);
         }
 
+        if (moveVector.x > 0) transform.localScale = new Vector3 (1, transform.localScale.y, transform.localScale.z);
+        else if (moveVector.x < 0) transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
+
     }
 
     private void OnDrawGizmosSelected()

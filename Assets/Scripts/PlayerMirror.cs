@@ -195,6 +195,9 @@ public class PlayerMirror : MonoBehaviour
                 timerFade = 0;
             }
         }
+
+        if (myPlayer.GetAxis("AimHorizontal") > 0) transform.localScale = new Vector3(1, transform.localScale.y, transform.localScale.z);
+        else if (myPlayer.GetAxis("AimHorizontal") < 0) transform.localScale = new Vector3(-1, transform.localScale.y, transform.localScale.z);
     }
 
     private void MoveToMirror()

@@ -20,6 +20,8 @@ public class Score : MonoBehaviour
     [SerializeField] private GameObject score_2;
     [SerializeField] private GameObject score_3;
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip P1winSound;
 
     void Awake()
      {
@@ -36,6 +38,7 @@ public class Score : MonoBehaviour
         else if(scoreP2 == 0)
         {
             gameOverP1.SetActive(true);
+            audioSource.PlayOneShot(P1winSound);
         }
         else if(scoreP1 == 1)
         {

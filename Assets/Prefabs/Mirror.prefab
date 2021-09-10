@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.93, y: 1.91}
   m_EdgeRadius: 0
 --- !u!114 &-6754978049672607105
 MonoBehaviour:
@@ -74,6 +74,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isBroken: 0
   repairTime: 10
+  hasSpreadPU: 0
+  hasboomerangdPU: 0
+  myPowerUp: {fileID: 0}
   audioSource: {fileID: 672487030898972064}
   mirrorRepair: {fileID: 8300000, guid: e15455bf786a2e34d891fb67bdcac851, type: 3}
   correspondingKey: 0

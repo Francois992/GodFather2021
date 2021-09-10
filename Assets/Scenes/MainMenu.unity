@@ -371,5 +371,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4572583628447857822, guid: e5f2527a033144e4aa3109c3f778de6b, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 500
+      objectReference: {fileID: 0}
+    - target: {fileID: 4572583628447857823, guid: e5f2527a033144e4aa3109c3f778de6b, type: 3}
+      propertyPath: m_Text
+      value: InnerFight
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5f2527a033144e4aa3109c3f778de6b, type: 3}

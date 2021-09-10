@@ -21,11 +21,14 @@ public class Projectile : MonoBehaviour
 
     [SerializeField] private GameObject player;
 
+    private CameraShake cam;
+
     void Start()
     {
         initRot = transform.rotation;
         player = GameObject.FindGameObjectWithTag("Player");
         audioSource = player.GetComponent<AudioSource>();
+        cam = Camera.main.GetComponent<CameraShake>();
     }
 
     // Update is called once per frame
@@ -49,6 +52,7 @@ public class Projectile : MonoBehaviour
             Score.instance.scoreP1 -= 1;
             Score.instance.scoreP2 += 1;
             audioSource.PlayOneShot(playerHurt);
+            //StartCoroutine(cam.Shake(0.15f, 0.4f));
         }
         if (collision.gameObject.GetComponent<Mirror>() && IsReflected)
         {
@@ -56,6 +60,7 @@ public class Projectile : MonoBehaviour
             Score.instance.scoreP1 += 1;
             Score.instance.scoreP2 -= 1;
             audioSource.PlayOneShot(mirrorBreak);
+            //StartCoroutine(cam.Shake(0.15f, 0.4f));
         }
 
         if (collision.gameObject.GetComponent<Projectile>() && !IsReflected)
